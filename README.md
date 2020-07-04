@@ -23,7 +23,7 @@ meet.
 
 ###### requirements
 
-- `tree`
+- `yq`
 - `make`
 - `jq`
 
@@ -34,5 +34,11 @@ Export your firefox bookmarks and run
 
 `make bookmarks.json`
 
-Now import and your bookmarks should reflect the changes in the directory
-structure
+Now Import your bookmarks to Firefox
+
+
+#### Features
+
+- CRUD labels
+- Existing bookmarks labels are updated based on taxonomy
+- Bookmarks are added to calendar according to labels
