@@ -1,0 +1,11 @@
+- command: update
+  path: inventory.cook
+  value:
+  - basin
+  - board
+  - cloth
+  - knife
+  - pot
+  - rack
+  - storage
+  - strainer
