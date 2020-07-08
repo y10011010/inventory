@@ -2,6 +2,8 @@
   path: inventory.cook
   value:
   - basin
+  - - large
+    - small
   - board
   - cloth
   - knife

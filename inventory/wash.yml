@@ -1,0 +1,10 @@
+- command: update
+  path: inventory.wash
+  value:
+  - brush
+  - cream
+  - file
+  - paste
+  - stone
+  - towel
+  - vitamins

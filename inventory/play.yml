@@ -1,0 +1,13 @@
+- command: update
+  path: inventory.play
+  value:
+  - bag
+  - box
+  - chalk
+  - clothing
+  - deoderant
+  - shoes
+  - sunnies
+  - tape
+  - towel
+  - trunks

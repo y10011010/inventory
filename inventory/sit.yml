@@ -1,0 +1,8 @@
+- command: update
+  path: inventory.sit
+  value:
+  - aquaria
+  - candle
+  - clothing
+  - cusion
+  - table

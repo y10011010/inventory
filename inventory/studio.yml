@@ -1,0 +1,14 @@
+- command: update
+  path: inventory.studio
+  value:
+  - bass
+  - cables
+  - computer
+  - controller
+  - drums
+  - electric
+  - mixer
+  - pads
+  - router
+  - soundcard
+  - tape
