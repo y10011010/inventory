@@ -1,0 +1,1680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Making Tables: Elementary Introduction to the Wolfram Language</title>
+<meta name="description" content="Learn the basics of constructing tables with the Wolfram Language. Make lists with Table function. Introduce variables. Written by Stephen Wolfram.">
+
+<!-- gl-head-includes.en.html -->
+
+    
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="http://www.wolfram.com/share.png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:secure_url" content="https://www.wolfram.com/share.png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="1200">
+    
+    <link rel="stylesheet" href="//www.wolframcdn.com/fonts/source-sans-pro/1.0/global.css">
+    <link rel="stylesheet" href="/common/css/gl-styles.en.css">
+    <script src="//www.wolframcdn.com/consent/cookie-consent.js"></script>
+    <script src="/common/javascript/wal/latest/walLoad.js"></script>
+    <script src="/common/javascript/jquery/core/1.11.2/jquery.min.js"></script>
+    <script src="/common/javascript/jquery/plugins/migrate/1.2.1/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/common/javascript/jquery/plugins/hoverIntent/r6/hoverIntent.min.js"></script>
+    <script src="/common/javascript/gl-head-scripts.en.js"></script>
+    <script src="/common/javascript/analytics.js"></script>
+
+<!--/gl-head-includes.en.html -->
+
+<link rel="stylesheet" type="text/css" href="/language/css/global.css" >
+<link rel="stylesheet" type="text/css" href="css/eiwl.css" >
+<link rel="stylesheet" type="text/css" href="css/clipboard.css" >
+<link rel="stylesheet" type="text/css" href="/language/elementary-introduction/2nd-ed/css/chapter-cookie.css.en" >
+<link rel="stylesheet" type="text/css" href="/language/elementary-introduction/2nd-ed/css/eiwl-check-answer-lightbox.css" >
+<script type="text/javascript" src="js/eiwl.js"></script>
+<script type="text/javascript" src="js/eiwl-input-popup.js"></script>
+<script type="text/javascript" src="js/eiwl-check-answer-lightbox.js"></script>
+<script type="text/javascript" src="js/clipboard.js.en" ></script>
+<script type='text/javascript'>baselang='06-making-tables.en';</script>
+ 
+</head>
+<body id="eiwl" class="eiwl gl-header-always-compact-nofooter">
+
+<!-- gl-header.en.html -->
+
+<div id="gl-outer-wrapper" class="gl-en cf">
+    <div id="gl-header">
+        <div id="gl-header-top">
+            <ul class="cf">
+                <li><a href="http://www.wolframalpha.com/?source=nav">WolframAlpha.com</a></li>
+                <li><a href="https://www.wolframcloud.com/?source=nav">WolframCloud.com</a></li>
+                <li><a href="http://www.wolfram.com/resources/?source=nav">All Sites &amp; Public Resources...</a></li>
+            </ul>
+        </div>
+        <div id="gl-header-bottom" class="cf">
+            <div id="gl-logo">
+                <a href="http://www.wolfram.com/?source=nav" class="cf">
+                    <img src="/common/images/gl-logo-spikey.en.png" width="48" height="50" alt="" id="gl-logo-spikey">
+                    <img src="/common/images/gl-logo-wolfram.en.png" width="160" height="22" alt="Wolfram" id="gl-logo-wolfram">
+                    <img src="/common/images/gl-logo-computation-meets-knowledge.en.png" width="160" height="7" alt="Computation Meets Knowledge" id="gl-logo-slogan">
+                </a>
+            </div>
+            <ul id="gl-menu" class="cf">
+
+                <li id="gl-menu-products" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/products/?source=nav">Products &amp; Services<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper cf">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><a href="http://www.wolfram.com/wolfram-one/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r2-c11"></i></span><span>Wolfram|One</span></a></li>
+                                <li><a href="http://www.wolfram.com/mathematica/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c2"></i></span><span>Mathematica</span></a></li>
+                                <li><a href="http://www.wolfram.com/wolfram-alpha-notebook-edition/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r2-c12"></i></span><span>Wolfram|Alpha Notebook&nbsp;Edition</span></a></li>
+                                <li><a href="http://www.wolfram.com/programming-lab/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c10"></i></span><span>Programming Lab</span></a></li>
+                                <li><a href="http://www.wolfram.com/finance-platform/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c5"></i></span><span>Finance Platform</span></a></li>
+                                <li><a href="http://www.wolfram.com/system-modeler/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c6"></i></span><span>SystemModeler</span></a></li>
+                                <li><a href="http://www.wolfram.com/player/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c4"></i></span><span>Wolfram Player</span></a></li>
+                                <li><a href="http://www.wolfram.com/engine/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r2-c4"></i></span><span>Wolfram Engine</span></a></li>
+                                <li><a href="http://www.wolfram.com/wolframscript/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c1"></i></span><span>WolframScript</span></a></li>
+                            </ul>
+                            <ul class="gl-col gl-col2">
+                                <li class="gl-hover gl-lines">
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/enterprise-private-cloud/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c12"></i></span><span>Enterprise Private Cloud</span></a></li>
+                                        <li><a href="http://www.wolfram.com/mathematica-enterprise-edition/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c13"></i></span><span>Enterprise Mathematica</span></a></li>
+                                        <li><a href="http://products.wolframalpha.com/appliance/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c14"></i></span><span>Wolfram|Alpha Appliance</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r3-c7"></i></span><span>Enterprise Solutions</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolframsolutions.com/?source=nav">Corporate Consulting</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Technical Services</a></li>
+                                        <li><a href="http://products.wolframalpha.com/business/?source=nav">Wolfram|Alpha Business Solutions</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><a href="https://resources.wolframcloud.com/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r3-c8"></i></span><span>Resource System</span></a>
+                                    <ul>
+                                        <li><a href="https://datarepository.wolframcloud.com/?source=nav">Data Repository</a></li>
+                                        <li><a href="https://resources.wolframcloud.com/NeuralNetRepository/?source=nav">Neural Net Repository</a></li>
+                                        <li><a href="https://resources.wolframcloud.com/FunctionRepository/?source=nav">Function Repository</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="http://www.wolframalpha.com/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r1-c7"></i></span><span>Wolfram|Alpha</span></a>
+                                    <ul>
+                                        <li><a href="http://www.wolframalpha.com/pro/?source=nav">Wolfram|Alpha Pro</a></li>
+                                        <li><a href="http://www.wolframalpha.com/pro/problem-generator/?source=nav">Problem Generator</a></li>
+                                        <li><a href="http://products.wolframalpha.com/api/?source=nav">API</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="https://datadrop.wolframcloud.com/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r2-c10"></i></span><span>Data Drop</span></a></li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><a href="http://www.wolfram.com/education/?source=nav" class="gl-flex"><span><i class="gl-icon gl-r3-c2"></i></span><span>Products for Education</span></a></li>
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r1-c8"></i></span><span>Mobile Apps</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/player-app/?source=nav">Wolfram Player</a></li>
+                                        <li><a href="http://www.wolfram.com/cloud-app/?source=nav" target="_blank">Wolfram Cloud App</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav">Wolfram|Alpha for Mobile</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav#wapowered">Wolfram|Alpha-Powered Apps</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r1-c9"></i></span><span>Services</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Paid Project Support</a></li>
+                                        <li><a href="http://www.wolfram.com/wolfram-u/?source=nav">Wolfram U</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Summer Programs</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/products/?source=nav">All Products &amp; Services &raquo;</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-products -->
+
+                <li id="gl-menu-technologies" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/technologies/?source=nav">Technologies<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <div class="gl-col gl-col1">
+                                <a href="http://www.wolfram.com/language/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c1"></i></span><span>Wolfram Language</span></span>
+                                    <span>Revolutionary knowledge-based programming language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/cloud/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c2"></i></span><span>Wolfram Cloud</span></span>
+                                    <span>Central infrastructure for Wolfram's cloud products &amp; services.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/wolfram-science/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c8"></i></span><span>Wolfram Science</span></span>
+                                    <span>Technology-enabling science of the computational universe.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col2">
+                                <a href="http://www.wolfram.com/notebooks/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c3"></i></span><span>Wolfram Notebooks</span></span>
+                                    <span>The preeminent environment for any technical workflows.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/engine/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c4"></i></span><span>Wolfram Engine</span></span>
+                                    <span>Software engine implementing the Wolfram Language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/natural-language-understanding/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c9"></i></span><span>Wolfram Natural Language Understanding System</span></span>
+                                    <span>Knowledge-based broadly deployed natural language.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col3">
+                                <a href="http://www.wolfram.com/data-framework/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c5"></i></span><span>Wolfram Data Framework</span></span>
+                                    <span>Semantic framework for real-world data.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/universal-deployment-system/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c6"></i></span><span>Wolfram Universal Deployment System</span></span>
+                                    <span>Instant deployment across cloud, desktop, mobile, and more.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/knowledgebase/?source=nav" class="gl-hover">
+                                    <span class="gl-flex"><span><i class="gl-icon gl-r2-c7"></i></span><span>Wolfram Knowledgebase</span></span>
+                                    <span>Curated computable knowledge powering Wolfram|Alpha.</span>
+                                </a>
+                            </div>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/technologies/?source=nav">All Technologies &raquo;</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-technologies -->
+
+                <li id="gl-menu-solutions" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/solutions/?source=nav">Solutions<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-icon gl-r3-c1"></i></span><span>Engineering, R&amp;D</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/aerospace-engineering/?source=nav">Aerospace &amp; Defense</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemical-engineering/?source=nav">Chemical Engineering</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/control-systems/?source=nav">Control Systems</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electrical-engineering/?source=nav">Electrical Engineering</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/image-processing/?source=nav">Image Processing</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/industrial-engineering/?source=nav">Industrial Engineering</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/mechanical-engineering/?source=nav">Mechanical Engineering</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/operations-research/?source=nav">Operations Research</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>More...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-rtall gl-r3-c4"></i></span><span>Finance, Statistics &amp; Business Analysis</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/actuarial-sciences/?source=nav">Actuarial Sciences</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/bioinformatics/?source=nav">Bioinformatics</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/data-science/?source=nav">Data Science</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/econometrics/?source=nav">Econometrics</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/financial-risk-management/?source=nav">Financial Risk Management</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/statistics/?source=nav">Statistics</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>More...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r3-c2"></i></span><span>Education</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/education/?source=nav">All Solutions for Education</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r3-c6"></i></span><span>Trends</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/featureset/machine-learning/?source=nav">Machine Learning</a></li>
+                                        <li><a href="http://www.mpdatascience.com/?source=nav">Multiparadigm Data Science</a></li>
+                                        <li><a href="http://www.wolfram.com/internet-of-things/?source=nav">Internet of Things</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/hpc/?source=nav">High-Performance Computing</a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Hackathons</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r3-c3"></i></span><span>Software &amp; Web</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/developer/?source=nav">Software Development</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electronic-publishing/?source=nav">Authoring &amp; Publishing</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/interface-development/?source=nav">Interface Development</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/web-development/?source=nav">Web Development</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><span class="gl-flex"><span><i class="gl-icon gl-r3-c5"></i></span><span>Sciences</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/astronomy/?source=nav">Astronomy</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/biological-sciences/?source=nav">Biology</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemistry/?source=nav">Chemistry</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>More...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/solutions/?source=nav">All Solutions &raquo;</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-solutions -->
+
+                <li id="gl-menu-support" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/support/?source=nav">Learning &amp; Support<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover cf">
+                                <li class="gl-col1"><span class="gl-flex"><span><i class="gl-icon gl-r4-c1"></i></span><span>Learning</span></span>
+                                    <ul>
+                                        <li><a href="http://reference.wolfram.com/language/?source=nav">Wolfram Language Documentation</a></li>
+                                        <li><a href="http://www.wolfram.com/language/fast-introduction-for-programmers/?source=nav">Fast Introduction for Programmers</a></li>
+                                        <li><a href="http://www.wolfram.com/wolfram-u/?source=nav">Wolfram U</a></li>
+                                        <li><a href="http://www.wolfram.com/broadcast/?source=nav">Videos &amp; Screencasts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col2">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/language/elementary-introduction/?source=nav">Wolfram Language Introductory Book</a></li>
+                                        <li><a href="http://www.wolfram.com/wolfram-u/calendar/?source=nav">Webinars &amp; Training</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Summer Programs</a></li>
+                                        <li><a href="http://www.wolfram.com/books/?source=nav">Books</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-icon gl-r4-c2"></i></span><span>Need Help?</span></span>
+                                    <ul>
+                                        <li><a href="https://support.wolfram.com/?source=nav">Support FAQ</a></li>
+                                        <li><a href="http://community.wolfram.com/?source=nav">Wolfram Community</a></li>
+                                        <li><a href="http://www.wolfram.com/support/contact/?source=nav">Contact Support</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-icon gl-r4-c4"></i></span><span>Premium Support</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/mathematica/pricing/premier-service.php?source=nav">Premier Service</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Technical Services</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/support/?source=nav">All Learning &amp; Support &raquo;</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-support -->
+
+                <li id="gl-menu-company" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/company/?source=nav">Company<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-icon gl-r5-c1"></i></span><span>About</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/background.html?source=nav">Company Background</a></li>
+                                        <li><a href="http://blog.wolfram.com/?source=nav">Wolfram Blog</a></li>
+                                        <li><a href="http://company.wolfram.com/events/?source=nav">Events</a></li>
+                                        <li><a href="http://www.wolfram.com/company/contact/?source=nav">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><span class="gl-flex"><span><i class="gl-icon gl-r5-c2"></i></span><span>Work with Us</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Careers at Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Internships</a></li>
+                                        <li><a href="http://community.wolfram.com/content?curTag=jobs&amp;source=nav">Other Wolfram Language Jobs</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover cf">
+                                <li class="gl-col3"><span class="gl-flex"><span><i class="gl-icon gl-r5-c3"></i></span><span>Initiatives</span></span>
+                                    <ul>
+                                        <li><a href="http://www.wolframfoundation.org/?source=nav">Wolfram Foundation</a></li>
+                                        <li><a href="http://mathworld.wolfram.com/?source=nav" target="_blank">MathWorld</a></li>
+                                        <li><a href="http://www.computerbasedmath.org/?source=nav">Computer-Based Math</a></li>
+                                        <li><a href="http://www.wolframscience.com/?source=nav"><em>A New Kind of Science</em></a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Wolfram Technology for Hackathons</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/ambassador/?source=nav">Student Ambassador Program</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col4">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/startups/?source=nav">Wolfram for Startups</a></li>
+                                        <li><a href="http://demonstrations.wolfram.com/?source=nav">Demonstrations Project</a></li>
+                                        <li><a href="http://www.wolfram.com/events/technology-conference/innovator-award/?source=nav">Wolfram Innovator Awards</a></li>
+                                        <li><a href="http://www.wolfram.com/raspberry-pi/?source=nav">Wolfram + Raspberry Pi</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Summer Programs</a></li>
+                                        <li><a href="http://www.wolfram.com/resources/?source=nav"><em>More...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/company/?source=nav">All Company &raquo;</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-company -->
+
+                <li id="gl-menu-divider"></li>
+                <li id="gl-menu-search" class="gl-menu-tab">
+                    <a href="//search.wolfram.com/?source=nav"><i class="gl-icon gl-r6-c1"></i>Search</a>
+                    <ul class="gl-submenu">
+                        <li id="gl-search-wrapper" class="cf">
+                            <form action="//search.wolfram.com/" method="get" accept-charset="utf-8">
+                                <div>
+                                    <input type="text" name="query" placeholder="What are you looking for?" autocomplete="off" id="gl-search">
+                                </div>
+                            </form>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-search -->
+
+            </ul><!--/#gl-menu -->
+        </div><!--/#gl-header-bottom -->
+    </div><!--/#gl-header -->
+    <div id="gl-header-bg"><span><!-- --></span></div>
+    <div id="gl-header-offset"><span><!-- --></span></div>
+    <div id="gl-inner-wrapper">
+
+<!--/gl-header.en.html -->
+
+<header>
+	<div class="header-inner">
+		<span class="header-image"><a href="/language/elementary-introduction/2nd-ed/index.html" id="EIWL-WEB-2nd-ed-main-index-06-making-tables" class="km-track-click-no-url"><img src="/language/elementary-introduction/2nd-ed/img/elementary-introduction-header.png" alt="An Elementary Introduction to the Wolfram Language"></a></span>
+		<span class="prevnext"><a href="05-operations-on-lists.html" id="EIWL-WEB-2nd-ed-prev-section-header-06-making-tables" class="km-track-click-no-url"><span><img src="/language/elementary-introduction/2nd-ed/img/top-previous-arrow.png" width="12" height="20" alt=""></span></a><a href="07-colors-and-styles.html" id="EIWL-WEB-2nd-ed-next-section-header-06-making-tables" class="km-track-click-no-url"><span><img src="/language/elementary-introduction/2nd-ed/img/top-next-arrow.png" width="13" height="21" alt=""></span></a></span>
+	</div>
+</header>
+<div class="sidebarwrapper">
+ <div class="sidebarHamburger"
+     id="sidebarHamburger">
+  <a href="#" id="showSidebar"><img src="/language/elementary-introduction/2nd-ed/img/hamburger.png" width="45" height="28" /></a>
+ </div>
+ <div class="sidebar"
+     id="sidebar">
+  <div class="sidebar-close-button">
+   <a href="#" id="hide-sidebar-button"><img src="/language/elementary-introduction/2nd-ed/img/x-icon.png" width="13" height="13" /></a>
+  </div>
+  <nav id="nav" class="pageNav"><ul>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/preface.html" id="EIWL-WEB-sidebar-preface">Preface</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.html" id="EIWL-WEB-sidebar-what-is-the-wolfram-language">What Is the Wolfram Language?</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.html" id="EIWL-WEB-sidebar-practicalities-of-using-the-wolfram-language">Practicalities of Using the Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/other-resources.html" id="EIWL-WEB-sidebar-other-resources">Other Resources</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/01-starting-out-elementary-arithmetic.html" id="EIWL-WEB-sidebar-01-starting-out-elementary-arithmetic"><span class="tocSectionNumber">1</span>Starting Out: Elementary Arithmetic</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/02-introducing-functions.html" id="EIWL-WEB-sidebar-02-introducing-functions"><span class="tocSectionNumber">2</span>Introducing Functions</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/03-first-look-at-lists.html" id="EIWL-WEB-sidebar-03-first-look-at-lists"><span class="tocSectionNumber">3</span>First Look at Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/04-displaying-lists.html" id="EIWL-WEB-sidebar-04-displaying-lists"><span class="tocSectionNumber">4</span>Displaying Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/05-operations-on-lists.html" id="EIWL-WEB-sidebar-05-operations-on-lists"><span class="tocSectionNumber">5</span>Operations on Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/06-making-tables.html" id="EIWL-WEB-sidebar-06-making-tables"><span class="tocSectionNumber">6</span>Making Tables</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/07-colors-and-styles.html" id="EIWL-WEB-sidebar-07-colors-and-styles"><span class="tocSectionNumber">7</span>Colors and Styles</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/08-basic-graphics-objects.html" id="EIWL-WEB-sidebar-08-basic-graphics-objects"><span class="tocSectionNumber">8</span>Basic Graphics Objects</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/09-interactive-manipulation.html" id="EIWL-WEB-sidebar-09-interactive-manipulation"><span class="tocSectionNumber">9</span>Interactive Manipulation</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/10-images.html" id="EIWL-WEB-sidebar-10-images"><span class="tocSectionNumber">10</span>Images</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/11-strings-and-text.html" id="EIWL-WEB-sidebar-11-strings-and-text"><span class="tocSectionNumber">11</span>Strings and Text</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/12-sound.html" id="EIWL-WEB-sidebar-12-sound"><span class="tocSectionNumber">12</span>Sound</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.html" id="EIWL-WEB-sidebar-13-arrays-or-lists-of-lists"><span class="tocSectionNumber">13</span>Arrays, or Lists of Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.html" id="EIWL-WEB-sidebar-14-coordinates-and-graphics"><span class="tocSectionNumber">14</span>Coordinates and Graphics</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.html" id="EIWL-WEB-sidebar-15-the-scope-of-the-wolfram-language"><span class="tocSectionNumber">15</span>Scope of the Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/16-real-world-data.html" id="EIWL-WEB-sidebar-16-real-world-data"><span class="tocSectionNumber">16</span>Real&#8208;World Data</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/17-units.html" id="EIWL-WEB-sidebar-17-units"><span class="tocSectionNumber">17</span>Units</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/18-geocomputation.html" id="EIWL-WEB-sidebar-18-geocomputation"><span class="tocSectionNumber">18</span>Geocomputation</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/19-dates-and-times.html" id="EIWL-WEB-sidebar-19-dates-and-times"><span class="tocSectionNumber">19</span>Dates and Times</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/20-options.html" id="EIWL-WEB-sidebar-20-options"><span class="tocSectionNumber">20</span>Options</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/21-graphs-and-networks.html" id="EIWL-WEB-sidebar-21-graphs-and-networks"><span class="tocSectionNumber">21</span>Graphs and Networks</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/22-machine-learning.html" id="EIWL-WEB-sidebar-22-machine-learning"><span class="tocSectionNumber">22</span>Machine Learning</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/23-more-about-numbers.html" id="EIWL-WEB-sidebar-23-more-about-numbers"><span class="tocSectionNumber">23</span>More about Numbers</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/24-more-forms-of-visualization.html" id="EIWL-WEB-sidebar-24-more-forms-of-visualization"><span class="tocSectionNumber">24</span>More Forms of Visualization</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/25-ways-to-apply-functions.html" id="EIWL-WEB-sidebar-25-ways-to-apply-functions"><span class="tocSectionNumber">25</span>Ways to Apply Functions</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/26-pure-anonymous-functions.html" id="EIWL-WEB-sidebar-26-pure-anonymous-functions"><span class="tocSectionNumber">26</span>Pure Anonymous Functions</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/27-applying-functions-repeatedly.html" id="EIWL-WEB-sidebar-27-applying-functions-repeatedly"><span class="tocSectionNumber">27</span>Applying Functions Repeatedly</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/28-tests-and-conditionals.html" id="EIWL-WEB-sidebar-28-tests-and-conditionals"><span class="tocSectionNumber">28</span>Tests and Conditionals</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/29-more-about-pure-functions.html" id="EIWL-WEB-sidebar-29-more-about-pure-functions"><span class="tocSectionNumber">29</span>More about Pure Functions</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/30-rearranging-lists.html" id="EIWL-WEB-sidebar-30-rearranging-lists"><span class="tocSectionNumber">30</span>Rearranging Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/31-parts-of-lists.html" id="EIWL-WEB-sidebar-31-parts-of-lists"><span class="tocSectionNumber">31</span>Parts of Lists</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/32-patterns.html" id="EIWL-WEB-sidebar-32-patterns"><span class="tocSectionNumber">32</span>Patterns</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/33-expressions-and-their-structure.html" id="EIWL-WEB-sidebar-33-expressions-and-their-structure"><span class="tocSectionNumber">33</span>Expressions and Their Structure</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/34-associations.html" id="EIWL-WEB-sidebar-34-associations"><span class="tocSectionNumber">34</span>Associations</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/35-natural-language-understanding.html" id="EIWL-WEB-sidebar-35-natural-language-understanding"><span class="tocSectionNumber">35</span>Natural Language Understanding</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/36-creating-websites-and-apps.html" id="EIWL-WEB-sidebar-36-creating-websites-and-apps"><span class="tocSectionNumber">36</span>Creating Websites and Apps</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/37-layout-and-display.html" id="EIWL-WEB-sidebar-37-layout-and-display"><span class="tocSectionNumber">37</span>Layout and Display</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/38-assigning-names-to-things.html" id="EIWL-WEB-sidebar-38-assigning-names-to-things"><span class="tocSectionNumber">38</span>Assigning Names to Things</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/39-immediate-and-delayed-values.html" id="EIWL-WEB-sidebar-39-immediate-and-delayed-values"><span class="tocSectionNumber">39</span>Immediate and Delayed Values</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/40-defining-your-own-functions.html" id="EIWL-WEB-sidebar-40-defining-your-own-functions"><span class="tocSectionNumber">40</span>Defining Your Own Functions</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/41-more-about-patterns.html" id="EIWL-WEB-sidebar-41-more-about-patterns"><span class="tocSectionNumber">41</span>More about Patterns</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/42-string-patterns-and-templates.html" id="EIWL-WEB-sidebar-42-string-patterns-and-templates"><span class="tocSectionNumber">42</span>String Patterns and Templates </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/43-storing-things.html" id="EIWL-WEB-sidebar-43-storing-things"><span class="tocSectionNumber">43</span>Storing Things</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/44-importing-and-exporting.html" id="EIWL-WEB-sidebar-44-importing-and-exporting"><span class="tocSectionNumber">44</span>Importing and Exporting</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/45-datasets.html" id="EIWL-WEB-sidebar-45-datasets"><span class="tocSectionNumber">45</span>Datasets</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/46-writing-good-code.html" id="EIWL-WEB-sidebar-46-writing-good-code"><span class="tocSectionNumber">46</span>Writing Good Code</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="/language/elementary-introduction/2nd-ed/47-debugging-your-code.html" id="EIWL-WEB-sidebar-47-debugging-your-code"><span class="tocSectionNumber">47</span>Debugging Your Code</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/what-we-havent-discussed.html" id="EIWL-WEB-sidebar-what-we-havent-discussed">What We Haven&#8217;t Discussed</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/being-a-programmer.html" id="EIWL-WEB-sidebar-being-a-programmer">Afterword: Being a Programmer</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/answers-to-exercises.html" id="EIWL-WEB-sidebar-answers-to-exercises">Answers to Exercises</a>
+    </li>
+    <li id="book-index">
+     <a class="km-track-click-no-url tocFrontmatterLink" href="/language/elementary-introduction/2nd-ed/book-index.html" id="EIWL-WEB-sidebar-book-index">Index</a>
+    </li>
+    <li class="goToPageClass">
+     <form action="javascript:pageURL();" autocomplete="off"><span class="goToPageText">Jump to Book Page:</span><input id="goToPageInput" type="text" size="6" onkeypress="handle(event)" /></form>
+    </li>
+   </ul></nav>
+ </div>
+</div>
+
+<section>
+	<div class="section-inner">
+		<div class="wrapper mainOuter">
+			<div class="mainContent">
+		<div>
+ <a id="p-19" />
+ <table class="SectionTitleTable">
+  <tr><td id="SectionNumber"><span class="SectionNumber">6</span></td><td id="Section"><span class="Section">Making Tables</span></td></tr>
+ </table>
+ <div class="bodytext"><a id="i-1" />We<span class="special-character CloseCurlyQuote">&#8217;</span>ve seen a few ways to make lists in the Wolfram Language. You can just type them in. You can use <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>. And you can use functions like <a href="http://reference.wolfram.com/language/ref/IntegerDigits.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">IntegerDigits</a>. One of the most common and flexible ways to make lists is with the function <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>.</div>
+ <div class="bodytext"><a id="i-2" />In its very simplest form, <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> makes a list with a single element repeated some specified number of times.</div>
+ <div class="CodeCaption">Make a list that consists of 5 repeated 10 times:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_1-i.png.en"
+          height="20"
+          width="76"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_1-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_1_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-1-o.png.en"
+          width="147"
+          height="19"
+          id="06-making-tables-io-1-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">This makes a list with <span class="InlineCode">x</span> repeated 10 times:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[2]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_2-i.png.en"
+          height="20"
+          width="76"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_2-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_2_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[2]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-2-o.png.en"
+          width="137"
+          height="19"
+          id="06-making-tables-io-2-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">You can repeat lists too:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[3]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_3-i.png.en"
+          height="20"
+          width="102"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_3-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[3]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-3-o.png.en"
+          width="382"
+          height="19"
+          id="06-making-tables-io-3-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Or, actually, anything; here<span class="special-character CloseCurlyQuote">&#8217;</span>s a list of 3 identical pie charts:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[4]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_4-i.png.en"
+          height="20"
+          width="174"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_4-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_4_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[4]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-4-o.png.en"
+          width="307"
+          height="94"
+          id="06-making-tables-io-4-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a id="i-3" />But what if we want to make a table where the elements aren<span class="special-character CloseCurlyQuote">&#8217;</span>t identical? We can do that by introducing a <em>variable</em>, and then <em>iterating</em> over that variable.</div>
+ <div class="CodeCaption">Iterate over <span class="InlineCode">n</span> to make a list where <span class="InlineCode">n</span> goes up to 5:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[5]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_5-i.png.en"
+          height="20"
+          width="113"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_5-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[5]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-5-o.png.en"
+          width="152"
+          height="19"
+          id="06-making-tables-io-5-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext">Here<span class="special-character CloseCurlyQuote">&#8217;</span>s how this works. To make the first element of the list, <span class="InlineCode">n</span> is taken to be 1, so <span class="InlineCode">a[n]</span> is <span class="InlineCode">a[1]</span>. To make the second element, <span class="InlineCode">n</span> is taken to be 2, so <span class="InlineCode">a[n]</span> is <span class="InlineCode">a[2]</span>, and so on. <span class="InlineCode">n</span> is called a variable because it<span class="special-character CloseCurlyQuote">&#8217;</span>s varying as we make the different elements of the list.</div>
+ <div class="CodeCaption">Make a table that gives the value of <span class="InlineCode">n+1</span> when <span class="InlineCode">n</span> goes from 1 to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[6]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_6-i.png.en"
+          height="20"
+          width="125"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_6-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_6_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[6]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-6-o.png.en"
+          width="162"
+          height="19"
+          id="06-making-tables-io-6-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption"><a id="p-20" /><a id="i-4" />Make a table of the first 10 squares:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[7]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_7-i.png.en"
+          height="20"
+          width="121"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_7-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[7]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-7-o.png.en"
+          width="207"
+          height="19"
+          id="06-making-tables-io-7-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext">With <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>, you can make tables of anything. </div>
+ <div class="CodeCaption">Here<span class="special-character CloseCurlyQuote">&#8217;</span>s a table of successively longer lists produced by <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[8]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_8-i.png.en"
+          height="20"
+          width="146"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_8-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_8_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[8]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-8-o.png.en"
+          width="265"
+          height="19"
+          id="06-making-tables-io-8-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Here each of the lists produced is shown as a column:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[9]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_9-i.png.en"
+          height="20"
+          width="205"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_9-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[9]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-9-o.png.en"
+          width="163"
+          height="156"
+          id="06-making-tables-io-9-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Here<span class="special-character CloseCurlyQuote">&#8217;</span>s a table of plots of successively longer lists of values:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[10]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_10-i.png.en"
+          height="20"
+          width="231"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_10-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_10_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[10]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-10-o.png.en"
+          width="526"
+          height="110"
+          id="06-making-tables-io-10-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Here are pie charts with successively more segments:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[11]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_11-i.png.en"
+          height="20"
+          width="221"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_11-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[11]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-11-o.png.en"
+          width="545"
+          height="102"
+          id="06-making-tables-io-11-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a id="LastCellOfAPage" /><a id="i-5" />So far we<span class="special-character CloseCurlyQuote">&#8217;</span>ve always used <span class="InlineCode">n</span> as our variable. That<span class="special-character CloseCurlyQuote">&#8217;</span>s a pretty common choice. But we can actually use any (lowercase) letter we want, or any combination of letters. All that matters is that wherever the variable appears, its name is the same. </div>
+ <div class="CodeCaption"><a id="p-21" class="anchor-point"><span class="InlineCode">expt</span> is a perfectly good variable name:</a></div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[12]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_12-i.png.en"
+          height="20"
+          width="161"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_12-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_12_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[12]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-12-o.png.en"
+          width="237"
+          height="19"
+          id="06-making-tables-io-12-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Here we<span class="special-character CloseCurlyQuote">&#8217;</span>re using <span class="InlineCode">x</span> as the variable name, and it happens to appear several times:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[13]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_13-i.png.en"
+          height="20"
+          width="171"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_13-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[13]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-13-o.png.en"
+          width="280"
+          height="19"
+          id="06-making-tables-io-13-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext">In <span class="InlineCode"> <a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[f[n],{n,5}]</span>, <span class="InlineCode">n</span> takes on values 1, 2, 3, 4, 5. <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[f[n],{n,3,5}]</span> says to start at 3 instead: 3, 4, 5.</div>
+ <div class="CodeCaption">This generates a table with <span class="InlineCode">n</span> going from 1 to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[14]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_14-i.png.en"
+          height="20"
+          width="118"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_14-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_14_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[14]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-14-o.png.en"
+          width="285"
+          height="19"
+          id="06-making-tables-io-14-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">This generates a table with <span class="InlineCode">n</span> going from 4 to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[15]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_15-i.png.en"
+          height="20"
+          width="133"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_15-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[15]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-15-o.png.en"
+          width="202"
+          height="19"
+          id="06-making-tables-io-15-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">This makes <span class="InlineCode">n</span> go from 4 to 10 in steps of 2:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[16]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_16-i.png.en"
+          height="20"
+          width="148"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_16-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_16_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[16]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-16-o.png.en"
+          width="120"
+          height="19"
+          id="06-making-tables-io-16-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a id="i-6" />The Wolfram Language emphasizes consistency, so for example <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a> is set up to deal with starting points and steps just like <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>.</div>
+ <div class="CodeCaption">Generate the range of numbers 4 to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[17]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_17-i.png.en"
+          height="20"
+          width="81"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_17-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[17]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-17-o.png.en"
+          width="111"
+          height="19"
+          id="06-making-tables-io-17-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Generate the range of numbers 4 to 10 going in steps of 2:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[18]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_18-i.png.en"
+          height="20"
+          width="96"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_18-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_18_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[18]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-18-o.png.en"
+          width="68"
+          height="19"
+          id="06-making-tables-io-18-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Go from 0 to 1 in steps of 0.1:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[19]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_19-i.png.en"
+          height="20"
+          width="100"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_19-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[19]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-19-o.png.en"
+          width="268"
+          height="19"
+          id="06-making-tables-io-19-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a id="p-22" />There are usually many ways to do the same thing in the Wolfram Language. For example, here<span class="special-character CloseCurlyQuote">&#8217;</span>s how <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> and <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a> can produce identical plots.</div>
+ <div class="CodeCaption">Generate a table and plot it:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[20]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_20-i.png.en"
+          height="20"
+          width="231"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_20-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_20_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[20]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-20-o.png.en"
+          width="191"
+          height="120"
+          id="06-making-tables-io-20-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="CodeCaption">Get the same result by doing arithmetic with the range of values:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[21]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_21-i.png.en"
+          height="20"
+          width="288"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_21-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[21]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-21-o.png.en"
+          width="190"
+          height="119"
+          id="06-making-tables-io-21-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> always separately computes each entry in the list it generates<span class="special-character LongDash">&#8212;</span>and you can see this if you use <a href="http://reference.wolfram.com/language/ref/RandomInteger.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">RandomInteger</a> in <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>. </div>
+ <div class="CodeCaption">This generates 20 independent random integers with size up to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[22]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_22-i.png.en"
+          height="20"
+          width="194"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_22-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_22_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[22]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-22-o.png.en"
+          width="300"
+          height="19"
+          id="06-making-tables-io-22-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="bodytext"><a id="i-7" /><a href="http://reference.wolfram.com/language/ref/RandomInteger.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">RandomInteger</a> can actually also generate the list directly.</div>
+ <div class="CodeCaption"><a id="i-8" />This again generates 20 random integers with size up to 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[23]:=</td><td class="Input"><div class="copyable-input">
+      <img src="Files/06-making-tables-io_23-i.png.en"
+          height="20"
+          width="149"
+          alt="Click for copyable input"
+          id="EIWL-WEB-2nd-ed-show-copy-input-io_23-06-making-tables"
+          class="km-track-click-no-url" />
+     </div><div id="io_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[23]=</td><td class="Output"><div class="wideimage">
+      <img src="Files/06-making-tables-io-23-o.png.en"
+          width="300"
+          height="19"
+          id="06-making-tables-io-23-o"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="VocabularySection"><a id="Vocabulary" />Vocabulary</div>
+ <div class="VocabularyTable">
+  <a id="LastCellOfAPage" />
+  <table>
+   <col />
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[x,5]</td><td> </td><td><span class="VocabularyText">list of 5 copies of <span class="InlineCode">x</span> </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[f[n],{n,10}]</td><td> </td><td><span class="VocabularyText">list of values of <span class="InlineCode">f[n]</span> with <span class="InlineCode">n</span> going up to 10 </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[f[n],{n,2,10}]</td><td> </td><td><span class="VocabularyText">list of values with <span class="InlineCode">n</span> going from 2 to 10 </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[f[n],{n,2,10,4}]</td><td> </td><td><span class="VocabularyText">list of values with <span class="InlineCode">n</span> going from 2 to 10 in steps of 4 </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[5,10]</td><td> </td><td><span class="VocabularyText">list of numbers from 5 to 10 </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[10,20,2]</td><td> </td><td><span class="VocabularyText">list of numbers from 10 to 20 in steps of 2 </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/RandomInteger.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">RandomInteger</a>[10,20]</td><td> </td><td><span class="VocabularyText">list of 20 random integers up to 10 </span></td></tr>
+  </table>
+ </div>
+ <div class="ExerciseSection" id="ExerciseSection"><a id="p-23" /><a id="Exercises" />Exercises<div class="NewCheckYourAnswers">
+   <a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-new-check-your-exercises-in-cloud-06-making-tables">NEW: Check your answers in the Wolfram Cloud</a>
+  </div></div>
+ <div class="Exercise" id="6.1"><span class="ExerciseNumber">6.1</span>Make a list in which the number 1000 is repeated 5 times.&nbsp;<a href="javascript:OpenCloseExercises('6.1');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.1-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.1');" id="EIWL-WEB-2nd-ed-close-exercise-6.1-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.1-out.png"
+           class="ExerciseBoxOutputImage"
+           width="172"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.1-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.2"><span class="ExerciseNumber">6.2</span>Make a table of the values of <span class="InlineCode">n^3</span> for <span class="InlineCode">n</span> from 10 to 20.&nbsp;<a href="javascript:OpenCloseExercises('6.2');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.2-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.2');" id="EIWL-WEB-2nd-ed-close-exercise-6.2-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.2-out.png"
+           class="ExerciseBoxOutputImage"
+           width="376"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.2-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.3"><span class="ExerciseNumber">6.3</span>Make a number line plot of the first 20 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.3');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.3-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.3');" id="EIWL-WEB-2nd-ed-close-exercise-6.3-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.3-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.3-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.4"><span class="ExerciseNumber">6.4</span>Make a list of the even numbers (2, 4, 6, <span class="GrayPointSix">...</span>) up to 20.&nbsp;<a href="javascript:OpenCloseExercises('6.4');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.4-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.4');" id="EIWL-WEB-2nd-ed-close-exercise-6.4-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.4-out.png"
+           class="ExerciseBoxOutputImage"
+           width="174"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.4-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.5"><span class="ExerciseNumber">6.5</span>Use <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> to get the same result as <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[10]</span>.&nbsp;<a href="javascript:OpenCloseExercises('6.5');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.5-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.5');" id="EIWL-WEB-2nd-ed-close-exercise-6.5-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.5-out.png"
+           class="ExerciseBoxOutputImage"
+           width="139"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.5-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.6"><span class="ExerciseNumber">6.6</span>Make a bar chart of the first 10 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.6');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.6-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.6');" id="EIWL-WEB-2nd-ed-close-exercise-6.6-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.6-out.png"
+           class="ExerciseBoxOutputImage"
+           width="220"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.6-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.7"><span class="ExerciseNumber">6.7</span>Make a table of lists of digits for the first 10 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.7');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.7-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.7');" id="EIWL-WEB-2nd-ed-close-exercise-6.7-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.7-out.png"
+           class="ExerciseBoxOutputImage"
+           width="316"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.7-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.8"><span class="ExerciseNumber">6.8</span>Make a list line plot of the length of the sequence of digits for each of the first 100 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.8');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.8-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.8');" id="EIWL-WEB-2nd-ed-close-exercise-6.8-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.8-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.8-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.9"><span class="ExerciseNumber">6.9</span>Make a table of the first digit of the first 20 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.9');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.9-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.9');" id="EIWL-WEB-2nd-ed-close-exercise-6.9-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.9-out.png"
+           class="ExerciseBoxOutputImage"
+           width="262"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.9-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="6.10"><span class="ExerciseNumber">6.10</span>Make a list line plot of the first digits of the first 100 squares.&nbsp;<a href="javascript:OpenCloseExercises('6.10');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-6.10-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('6.10');" id="EIWL-WEB-2nd-ed-close-exercise-6.10-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-6.10-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-6.10-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.1"><span class="ExerciseWebNumber">+6.1</span>Make a list of the differences between <span class="InlineCode">n^3</span> and <span class="InlineCode">n^2</span> with <span class="InlineCode">n</span> up to 10.&nbsp;<a href="javascript:OpenCloseExercises('x6.1');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.1-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.1');" id="EIWL-WEB-2nd-ed-close-exercise-x6.1-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.1-out.png"
+           class="ExerciseBoxOutputImage"
+           width="230"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.1-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.2"><span class="ExerciseWebNumber">+6.2</span>Make a list of the odd numbers (1, 3, 5, ...) up to 100.&nbsp;<a href="javascript:OpenCloseExercises('x6.2');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.2-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.2');" id="EIWL-WEB-2nd-ed-close-exercise-x6.2-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.2-out.png"
+           class="ExerciseBoxOutputImage"
+           width="491"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.2-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.3"><span class="ExerciseWebNumber">+6.3</span>Make a list of the squares of even numbers up to 100.&nbsp;<a href="javascript:OpenCloseExercises('x6.3');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.3-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.3');" id="EIWL-WEB-2nd-ed-close-exercise-x6.3-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.3-out.png"
+           class="ExerciseBoxOutputImage"
+           width="541"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.3-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.4"><span class="ExerciseWebNumber">+6.4</span>Create the list <span class="InlineCode">{-3, -2, -1, 0, 1, 2}</span> using <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>.&nbsp;<a href="javascript:OpenCloseExercises('x6.4');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.4-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.4');" id="EIWL-WEB-2nd-ed-close-exercise-x6.4-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.4-out.png"
+           class="ExerciseBoxOutputImage"
+           width="107"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.4-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.5"><span class="ExerciseWebNumber">+6.5</span>Make a list for numbers n up to 20 in which each element is a column of the values of <span class="InlineCode">n</span>, <span class="InlineCode">n^2</span> and <span class="InlineCode">n^3</span>.&nbsp;<a href="javascript:OpenCloseExercises('x6.5');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.5-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.5');" id="EIWL-WEB-2nd-ed-close-exercise-x6.5-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.5-out.png"
+           class="ExerciseBoxOutputImage"
+           width="399"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.5-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.6"><span class="ExerciseWebNumber">+6.6</span>Make a list line plot of the last digits of the first 100 squares.&nbsp;<a href="javascript:OpenCloseExercises('x6.6');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.6-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.6');" id="EIWL-WEB-2nd-ed-close-exercise-x6.6-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.6-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.6-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.7"><span class="ExerciseWebNumber">+6.7</span>Make a list line plot of the first digit of the first 100 multiples of 3.&nbsp;<a href="javascript:OpenCloseExercises('x6.7');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.7-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.7');" id="EIWL-WEB-2nd-ed-close-exercise-x6.7-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.7-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.7-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.8"><span class="ExerciseWebNumber">+6.8</span>Make a list line plot of the total of the digits for each number up to 200.&nbsp;<a href="javascript:OpenCloseExercises('x6.8');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.8-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.8');" id="EIWL-WEB-2nd-ed-close-exercise-x6.8-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.8-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.8-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.9"><span class="ExerciseWebNumber">+6.9</span>Make a list line plot of the total of the digits for each of the first 100 squares.&nbsp;<a href="javascript:OpenCloseExercises('x6.9');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.9-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.9');" id="EIWL-WEB-2nd-ed-close-exercise-x6.9-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.9-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.9-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.10"><span class="ExerciseWebNumber">+6.10</span>Make a number line plot of the numbers <span class="InlineCode">1/n</span> with <span class="InlineCode">n</span> from 1 to 20.&nbsp;<a href="javascript:OpenCloseExercises('x6.10');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.10-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.10');" id="EIWL-WEB-2nd-ed-close-exercise-x6.10-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.10-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.10-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x6.11"><span class="ExerciseWebNumber">+6.11</span>Make a line plot of a list of 100 random integers where the <span class="InlineCode">n</span>th integer is between 0 and <span class="InlineCode">n</span>.&nbsp;<a href="javascript:OpenCloseExercises('x6.11');" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x6.11-06-making-tables">&#187;</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises('x6.11');" id="EIWL-WEB-2nd-ed-close-exercise-x6.11-06-making-tables" class="km-track-click-no-url"><img src="img/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" " /></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Sample expected output:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="Files/answers-to-exercises-x6.11-out.png"
+           class="ExerciseBoxOutputImage"
+           width="240"
+           alt=" " />
+      </div></td></tr>
+   </table>
+   <div class="ExerciseGoToWolframCloud"
+       id="ExerciseGoToWolframCloud">
+    <img src="img/open-exercise-in-cloud.png"
+        class="ExerciseGoToWolframCloudImage"
+        alt=" " />
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/06-making-tables-exercises.nb#sidebar=eiwl/06-making-tables" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x6.11-06-making-tables">Answer &amp; check your solution</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="QASection"><a id="QAndA" />Q&amp;A</div>
+ <div class="Question"><a id="i-9" />What does the <span class="InlineCode">{<span class="GrayPointSix">...</span>}</span> (list) in <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[n^2, {n, 5}]</span> mean?</div>
+ <div class="Answer">A list is always a way of collecting things together. Here what it<span class="special-character CloseCurlyQuote">&#8217;</span>s collecting is the variable <span class="InlineCode">n</span> and its range 5. In the Wolfram Language, this kind of use of a list is called an <em>iterator specification</em>.</div>
+ <div class="Question">Why is the <span class="InlineCode">{<span class="GrayPointSix">...</span>}</span> (list) in <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[n^2, {n, 5}]</span> needed?</div>
+ <div class="Answer">So one can easily generalize to multidimensional arrays, like <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[x^2-y^2, {x, 5}, {y, 5}]</span>.</div>
+ <div class="Question"><a id="i-10" />What are the constraints on the names of variables?</div>
+ <div class="Answer">They can be any sequence of letters or numbers, but they can<span class="special-character CloseCurlyQuote">&#8217;</span>t start with a number, and<span class="special-character LongDash">&#8212;</span>to avoid possible confusion with built-in Wolfram Language functions<span class="special-character LongDash">&#8212;</span>they shouldn<span class="special-character CloseCurlyQuote">&#8217;</span>t start with a capital letter.</div>
+ <div class="Question">Why do you have to name a variable if the name never matters?</div>
+ <div class="Answer">Good question! In <a href="/language/elementary-introduction/2nd-ed/26-pure-anonymous-functions.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-06-making-tables" target="_blank">Section 26</a>, we<span class="special-character CloseCurlyQuote">&#8217;</span>ll see how to avoid having named variables. It<span class="special-character CloseCurlyQuote">&#8217;</span>s very elegant, but it<span class="special-character CloseCurlyQuote">&#8217;</span>s a little more abstract than what we<span class="special-character CloseCurlyQuote">&#8217;</span>re doing with <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> here. </div>
+ <div class="Question"><a id="i-11" />Can <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a> deal with negative numbers?</div>
+ <div class="Answer">Yes. <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[-2, 2]</span> gives <span class="InlineCode">{-2, -1, 0, 1, 2}</span>. <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[2, -2]</span> gives <span class="InlineCode">{}</span>, but <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[2, -2, -1]</span> gives <span class="InlineCode">{2, 1, 0, -1, -2}</span>.</div>
+ <div class="TechNoteGroup">
+  <div class="TechNoteSection"><a id="TechNotes" />Tech Notes</div>
+  <ul class="TechNoteList">
+   <li class="TechNote">If you specify steps that don<span class="special-character CloseCurlyQuote">&#8217;</span>t fit evenly in the range you give, <a href="http://reference.wolfram.com/language/ref/Range.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a> and <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a> just go as far as the steps take them, potentially stopping before the upper limit. (So <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Range.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Range</a>[1, 6, 2]</span> gives <span class="InlineCode">{1, 3, 5}</span>, stopping at 5, not 6.)</li>
+   <li class="TechNote"><a id="i-12" />Using forms like <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[x, 20]</span> requires at least Version 10.2 of the Wolfram Language. In earlier versions, this had to be specified as <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Table.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-06-making-tables" target="_blank">Table</a>[x, {20}]</span>.</li>
+  </ul>
+ </div>
+ <div class="MoreExploreGroup">
+  <div class="MoreExploreSection"><a id="MoreToExplore" />More to Explore</div>
+  <div class="MoreExploreList">
+   <div class="MoreExplore">
+    <a id="LastCellOfAPage" />
+    <a href="http://reference.wolfram.com/language/ref/Table.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-06-making-tables" target="_blank">The Table Function in the Wolfram Language<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character RightGuillemet">&#187;</span></a>
+   </div>
+  </div>
+ </div>
+</div>
+			</div>
+		
+			<div class="bottomSpacerCell">&nbsp;</div>
+		</div>
+	</div>
+</section>
+	<div class="GoToCloudVersion" id="GoToCloudVersion"><a href="06-making-tables-cloud.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-cloud-embed-06-making-tables"><img src="img/switch-to-cloud.png" alt="" ></a></div>
+	<div class="GoToHTMLVersion" id="GoToHTMLVersion"><a href="06-making-tables.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-html-06-making-tables"><img src="img/switch-to-html.png" alt="" ></a></div>
+	<a href="javascript:nbdownload('EIWL2-06-making-tables.nb');" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-download-notebook-06-making-tables"><div class="DownloadNotebook" id="DownloadNotebook"><span class='DownloadNotebookText'>Download Notebook Version</span></div></a>
+	<a href="05-operations-on-lists.html" id="EIWL-WEB-2nd-ed-prev-section-footer-06-making-tables" class="km-track-click-no-url"><div class="previousFooter"></div></a>
+	<a href="07-colors-and-styles.html" id="EIWL-WEB-2nd-ed-next-section-footer-06-making-tables" class="km-track-click-no-url"><div class="nextFooter"></div></a>
+
+
+<!-- gl-footer-includes.en.html -->
+
+    </div><!--/#gl-inner-wrapper -->
+    <noscript><div id="gl-noscript"><div><i><!-- --></i>Enable JavaScript to interact with content and submit forms on Wolfram websites. <a href="http://www.enable-javascript.com/" target="_blank">Learn how&nbsp;&raquo;</a></div></div></noscript>
+</div><!--/#gl-outer-wrapper -->
+<span id="gl-footer-lang-message"><i class="gl-icon gl-r7-c2"></i></span>
+
+
+
+<span id="gl-footer-lang"></span><span id="gl-footer-lang-links"><a href="/language/elementary-introduction/2nd-ed/06-making-tables.html.es?footer=lang"><img src="/common/images/gl-lang-es.png" alt="es"></a> </span>
+<script src="/common/javascript/gl-footer-scripts.en.js"></script>
+
+<!--/gl-footer-includes.en.html -->
+
+
+<script src="/common/javascript/kissmetrics.js"></script>
+<script src="/language/elementary-introduction/2nd-ed/js/chapter-cookie.js.en"></script>
+</body>
+</html>
