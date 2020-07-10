@@ -27,6 +27,7 @@
   - openai
   - deepmind
   - arthur-stace
+  - WolframResearch
 
 
 - command: update
