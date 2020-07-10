@@ -1,5 +1,5 @@
 - command: update
-  path: inventory.work
+  path: inventory.code.tools
   value:
   - battery
   - bench
@@ -14,3 +14,17 @@
   - router
   - ubuntu
   - watch
+
+- command: update
+  path: inventory.code.com.github
+  value:
+    - following
+    - aws
+    - google
+    - facebook
+    - rails
+    - angularjs
+    - openai
+    - deepmind
+    - arthur-stace
+
