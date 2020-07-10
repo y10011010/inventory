@@ -28,3 +28,14 @@
   - deepmind
   - arthur-stace
 
+
+- command: update
+  path: inventory.code.projects
+  value:
+    - name: backpack
+      calendar_id: FIXME
+      repos:
+      - backpack
+      - cursed
+      - radical
+      - inventory
