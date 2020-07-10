@@ -3,6 +3,6 @@
   value:
     - language/elementary-introduction/2nd-ed
 - command: update
-  path: inventory.study.org.nltkk
+  path: inventory.study.org.nltk
   value:
     - book
