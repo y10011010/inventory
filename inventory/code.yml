@@ -18,13 +18,13 @@
 - command: update
   path: inventory.code.com.github
   value:
-    - following
-    - aws
-    - google
-    - facebook
-    - rails
-    - angularjs
-    - openai
-    - deepmind
-    - arthur-stace
+  - following
+  - aws
+  - google
+  - facebook
+  - rails
+  - angularjs
+  - openai
+  - deepmind
+  - arthur-stace
 
