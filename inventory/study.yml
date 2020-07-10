@@ -1,8 +1,17 @@
 - command: update
-  path: inventory.study.com.wolfram
-  value:
-    - language/elementary-introduction/2nd-ed
-- command: update
   path: inventory.study.org.nltk
   value:
     - book
+
+
+- command: update
+  path: inventory.study.edu.mit.ocw
+  value:
+    - 21m-380-spring-2010
+
+
+- command: update
+  path: inventory.study.com.wolfram
+  value:
+    - language/elementary-introduction/2nd-ed
+
