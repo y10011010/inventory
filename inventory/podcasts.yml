@@ -1,0 +1,51 @@
+- command: update
+  path: inventory.podcasts
+  value:
+    - name: PhilosophizeThis
+      url: http://philosophizethis.libsyn.com/rss
+    - name: ScienceVs
+      url: https://feeds.megaphone.fm/sciencevs
+    - name: FlashForward
+      url: https://feeds.megaphone.fm/PPY8359579005
+    - name: BrainStuff
+      url: https://feeds.megaphone.fm/HSW1226123619
+    - name: ChipsWithEveryThing
+      url: https://www.theguardian.com/technology/series/chips-with-everything/podcast.xml
+    - name: TalkPythonToMe
+      url: https://talkpython.fm/episodes/rss
+    - name: LinuxActionNews
+      url: https://feeds.fireside.fm/linuxactionnews/rss
+    - name: MachineLearning101
+      url: http://learningmachines101.libsyn.com/rss
+    - name: PythonBytes
+      url: https://pythonbytes.fm/episodes/rss
+    - name: DataFramed
+      url: https://feeds.buzzsprout.com/147669.rss
+    - name: CodeNewbie
+      url: http://feeds.codenewbie.org/cnpodcast.xml
+    - name: 60SecScience
+      url: http://rss.sciam.com/sciam/60secsciencepodcast
+    - name: GlobalNews
+      url: http://downloads.bbc.co.uk/podcasts/worldservice/globalnews/rss.xml
+    - name: ThisWeekInTech
+      url: http://leo.am/podcasts/twit
+    - name: CommandlineHeroes
+      url: https://feeds.pacific-content.com/commandlineheroes
+    - name: LinearDigressions
+      url: http://feeds.feedburner.com/udacity-linear-digressions?format=xml
+    - name: Inquiry
+      url: https://podcasts.files.bbci.co.uk/p029399x.rss
+    - name: ItsAllWidgets
+      url: https://itsallwidgets.com/podcast/feed
+    - name: Manly
+      url: https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/6081eee7-c459-4e12-a1ab-aadc000fc4a7/413a6904-4d72-4be8-9421-aadc000fc4ba/podcast.rss
+    - name: BeforeConsuming
+      url: https://feeds.simplecast.com/TpfKa8dX
+    - name: ParentingRoundabout
+      url: https://www.spreaker.com/show/3680863/episodes/feed
+    - name: MomDadFight
+      url: https://feeds.megaphone.fm/slatesmomanddadarefighting
+    - name: LongestShortest
+      url: https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/69c95ec2-4d7f-46b2-93da-aadc00363532/fcd20414-cda2-42fa-b8f2-aadc0036354a/podcast.rss
+    - name: HowToTakeOverTheWorld
+      url: https://httotw.libsyn.com/rss
