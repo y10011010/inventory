@@ -1,0 +1,18 @@
+- command: update
+  path: inventory.work.home
+  value:
+    - name: tabletop
+      note: |
+        Make a table top for use as a home office
+
+        More Instructions to follow
+      requirements:
+        - sandpaper
+        - varnish
+        - paint brushes
+        - tape measure
+        - builders pencil
+        - wooden horse
+        - clamps
+        - circular saw
+        - specifications
