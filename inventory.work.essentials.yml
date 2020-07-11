@@ -1,0 +1,17 @@
+- command: update
+  path: inventory.work.essentials
+  value:
+  - battery
+  - bench
+  - cables
+  - drives
+  - ipad
+  - lamp
+  - macos
+  - mat
+  - monitor
+  - power
+  - router
+  - ubuntu
+  - watch
+
