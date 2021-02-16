@@ -33,9 +33,3 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Bundle
       run: bundle install
-    - name: Scaffold
-      run: for items in bookmarks/snapshots bundle exec jekyll new .
-    - name: Build
-      run: restic restore snapshot_id for items in bookmarks jekyll build
-    - name: Release
-      run aws s3 push
