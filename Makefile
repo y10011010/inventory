@@ -17,7 +17,7 @@ inventory.yml: $(FILES)
 /tmp/inventory:
 	mkdir -p $@
 
-.PHONY: /tmp/inventory/%.yml
+.PHONY: /tmp/inventory /tmp/inventory/%.yml
 inventory/%.yml: .PHONY
 	$(NEW) $@ "" "" > /tmp/$@
 

@@ -1,0 +1,6 @@
+- command: update
+  path: config.collections
+  value:
+    'strenv(COLLECTION)':
+      - output: true
+        permalink: /jobs/:name
