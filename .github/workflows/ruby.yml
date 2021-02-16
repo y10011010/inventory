@@ -34,4 +34,4 @@ jobs:
     - name: Bundle Install
       run: bundle install
     - name: Scaffolding
-      run: jekyll new .
+      run: bundle exec jekyll new .
