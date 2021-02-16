@@ -33,3 +33,5 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Bundle Install
       run: bundle install
+    - name: Scaffolding
+      run: jekyll new .
