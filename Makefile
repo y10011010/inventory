@@ -26,3 +26,12 @@ inventory/%.yml: .PHONY
 
 clean:
 	rm -rf $(RESULTS)
+
+_data/categories:
+	@${MAKE} $(wildcard _data/categories/*.json)
+
+_data/categories/%.json:
+	@jq -rf $*.jq < $@
+
+console:
+	@node $@.js | jq -f $(CONTEXT).jq
