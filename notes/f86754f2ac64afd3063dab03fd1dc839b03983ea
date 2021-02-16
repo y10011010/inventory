@@ -1,0 +1,13 @@
+As per discussion offline, we could adopt the convention of storing all
+collections in a yaml document.
+
+They are accessible via
+
+```
+yq r inventory.yml inventory.plans
+```
+
+Where `plans` is a substitue for an association ala holocracy org
+
+This project can then provide associations in the form of jekyll config to
+facilitate publishing to the web

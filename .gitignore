@@ -1,1 +1,5 @@
 inventory.yml
+.calcurse.pid
+hooks
+conf
+keys
