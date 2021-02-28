@@ -1,0 +1,1 @@
+.default.rankedList[].rankedKeyword[].query

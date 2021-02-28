@@ -1,0 +1,22 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "> If I knew one I'd insert a famous quote about how it's important to know what you > want",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y10011010/inventory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/y10011010/inventory/issues"
+  },
+  "homepage": "https://github.com/y10011010/inventory#readme",
+  "dependencies": {
+    "google-trends-api": "^4.9.2"
+  }
+}
