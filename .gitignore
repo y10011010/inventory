@@ -1,1 +1,7 @@
 inventory.yml
+Gemfile.lock
+.calcurse.pid
+/node_modules/
+hooks
+conf
+keys
