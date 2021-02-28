@@ -1,8 +1,0 @@
-- command: update
-  path: inventory.sleep
-  value:
-  - blanket
-  - pants
-  - pillow
-  - sheet
-  - shirt
