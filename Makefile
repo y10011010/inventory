@@ -34,4 +34,4 @@ _data/categories/%.json:
 	@jq -rf $*.jq < $@
 
 console:
-	@node $@.js | jq -f $(CONTEXT).jq
+	@node $@.js | jq -rf $(CONTEXT).jq
